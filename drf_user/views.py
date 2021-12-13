@@ -322,27 +322,15 @@ class OTPLoginView(APIView):
             )
 
         else:
-            otp_obj_email = generate_otp(EMAIL, email)
             otp_obj_mobile = generate_otp(MOBILE, mobile)
 
             # Set same OTP for both Email & Mobile
-            otp_obj_mobile.otp = otp_obj_email.otp
             otp_obj_mobile.save()
 
-            # Send OTP to Email & Mobile
-            sentotp_email = send_otp(email, otp_obj_email, email)
+            # Send OTP to Mobile
             sentotp_mobile = send_otp(mobile, otp_obj_mobile, email)
 
             message = {}
-
-            if sentotp_email["success"]:
-                otp_obj_email.send_counter += 1
-                otp_obj_email.save()
-                message["email"] = {"otp": _("OTP has been sent successfully.")}
-            else:
-                message["email"] = {
-                    "otp": _("OTP sending failed {}".format(sentotp_email["message"]))
-                }
 
             if sentotp_mobile["success"]:
                 otp_obj_mobile.send_counter += 1
@@ -353,7 +341,7 @@ class OTPLoginView(APIView):
                     "otp": _("OTP sending failed {}".format(sentotp_mobile["message"]))
                 }
 
-            if sentotp_email["success"] or sentotp_mobile["success"]:
+            if sentotp_mobile["success"]:
                 curr_status = status.HTTP_201_CREATED
             else:
                 raise APIException(

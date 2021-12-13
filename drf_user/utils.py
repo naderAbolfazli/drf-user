@@ -3,6 +3,7 @@ import datetime
 from typing import Dict
 from typing import Optional
 from typing import Union
+from sms_api.otp import SendOtpSMS
 
 import pytz
 from django.http import HttpRequest
@@ -194,7 +195,8 @@ def send_otp(value: str, otpobj: OTPValidation, recip: str) -> Dict:
     )
 
     try:
-        rdata: dict = send_message(message, otp_settings["SUBJECT"], [value], [recip])
+        otp_sms = SendOtpSMS()
+        rdata: dict = otp_sms.send_verification_sms(value, recip)
     except ValueError as err:
         raise APIException(_(f"Server configuration error occurred: {err}"))
 
