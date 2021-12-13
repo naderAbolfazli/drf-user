@@ -254,14 +254,14 @@ class OTPLoginRegisterSerializer(serializers.Serializer):
                 user = None
 
         if user:
-            if user.email != email:
-                raise serializers.ValidationError(
-                    _(
-                        "Your account is registered with {mobile} does not has "
-                        "{email} as registered email. Please login directly via "
-                        "OTP with your mobile.".format(mobile=mobile, email=email)
-                    )
-                )
+            # if user.email != email:
+            #     raise serializers.ValidationError(
+            #         _(
+            #             "Your account is registered with {mobile} does not has "
+            #             "{email} as registered email. Please login directly via "
+            #             "OTP with your mobile.".format(mobile=mobile, email=email)
+            #         )
+            #     )
             if user.mobile != mobile:
                 raise serializers.ValidationError(
                     _(
