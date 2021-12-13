@@ -196,7 +196,7 @@ def send_otp(value: str, otpobj: OTPValidation, recip: str) -> Dict:
 
     try:
         otp_sms = SendOtpSMS()
-        rdata: dict = otp_sms.send_verification_sms(value, recip)
+        rdata: dict = otp_sms.send_verification_sms(otp, value)
     except ValueError as err:
         raise APIException(_(f"Server configuration error occurred: {err}"))
 
