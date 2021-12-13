@@ -238,7 +238,7 @@ class OTPLoginRegisterSerializer(serializers.Serializer):
     """
 
     name = serializers.CharField(required=True)
-    email = serializers.EmailField(required=True)
+    email = serializers.EmailField(required=False)
     verify_otp = serializers.CharField(default=None, required=False)
     mobile = serializers.CharField(required=True)
 

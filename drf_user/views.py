@@ -307,7 +307,7 @@ class OTPLoginView(APIView):
         user = serializer.validated_data.get("user", None)
 
         if verify_otp:
-            if validate_otp(email, verify_otp) and not user:
+            if validate_otp(mobile, verify_otp) and not user:
                 user = User.objects.create_user(
                     name=name,
                     mobile=mobile,
