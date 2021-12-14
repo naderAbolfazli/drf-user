@@ -45,7 +45,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
         blank=True,
     )
-    name = models.CharField(verbose_name=_("Full Name"), max_length=500, blank=False)
+    name = models.CharField(verbose_name=_("Full Name"), max_length=500, null=True, blank=True)
     profile_image = models.ImageField(
         verbose_name=_("Profile Photo"), upload_to="user_images", null=True, blank=True
     )
@@ -70,7 +70,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = "username"
-    REQUIRED_FIELDS = ["name", "email"]
+    REQUIRED_FIELDS = ["mobile"]
 
     class Meta:
         """Passing model metadata"""

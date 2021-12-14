@@ -20,10 +20,10 @@ class UserManager(BaseUserManager):
     def _create_user(
         self,
         username: str,
-        email: str,
         password: str,
-        fullname: str,
-        mobile: Optional[str] = None,
+        mobile: str,
+        email: Optional[str] = None,
+        fullname: Optional[str] = None,
         **kwargs
     ):
         """
@@ -40,10 +40,10 @@ class UserManager(BaseUserManager):
     def create_user(
         self,
         username: str,
-        email: str,
         password: str,
-        name: str,
-        mobile: Optional[str] = None,
+        mobile: str,
+        email: Optional[str] = None,
+        name: Optional[str] = None,
         **kwargs
     ):
         """
