@@ -200,13 +200,13 @@ class OTPSerializer(serializers.Serializer):
         if not user:
             if attrs["is_login"]:
                 raise NotFound(_("No user exists with provided details"))
-            if "email" not in attrs.keys() and "verify_otp" not in attrs.keys():
-                raise serializers.ValidationError(
-                    _(
-                        "email field is compulsory while verifying a"
-                        " non-existing user's OTP."
-                    )
-                )
+            # if "email" not in attrs.keys() and "verify_otp" not in attrs.keys():
+            #     raise serializers.ValidationError(
+            #         _(
+            #             "email field is compulsory while verifying a"
+            #             " non-existing user's OTP."
+            #         )
+            #     )
         else:
             attrs["email"] = user.email
             attrs["user"] = user
