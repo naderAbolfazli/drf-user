@@ -69,7 +69,7 @@ class UserManager(BaseUserManager):
         kwargs.setdefault("is_staff", False)
         kwargs.setdefault("is_active", vals.get("DEFAULT_ACTIVE_STATE", False))
 
-        return self._create_user(username, email, password, name, mobile, **kwargs)
+        return self._create_user(username, password, mobile, email, name, **kwargs)
 
     def create_superuser(
         self,
