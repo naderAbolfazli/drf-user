@@ -5,8 +5,6 @@ __version__ = "1.0.1"
 __author__ = "Himanshu Shankar"
 __license__ = "GPLv3"
 
-from django.conf import settings
-
 default_app_config = "drf_user.apps.DRFUserConfig"
 
 user_settings = {
@@ -44,6 +42,8 @@ def update_user_settings() -> dict:
 
     Author: Himanshu Shankar (https://himanshus.com)
     """
+    from django.conf import settings
+
     custom_settings = getattr(settings, "USER_SETTINGS", None)
 
     if custom_settings:
