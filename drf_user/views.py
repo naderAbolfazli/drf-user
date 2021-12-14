@@ -56,7 +56,6 @@ class RegisterView(CreateAPIView):
         """Override perform_create to create user"""
         data = {
             "username": serializer.validated_data["username"],
-            "email": serializer.validated_data["email"],
             "name": serializer.validated_data["name"],
             "password": serializer.validated_data["password"],
         }
