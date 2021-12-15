@@ -37,15 +37,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
         verbose_name=_("Unique UserName"), max_length=254, unique=True
     )
+    mobile = models.CharField(verbose_name=_("Mobile Number"), max_length=150, unique=True)
     email = models.EmailField(verbose_name=_("Email Address"), unique=False, null=True, blank=True)
-    mobile = models.CharField(
-        verbose_name=_("Mobile Number"),
-        max_length=150,
-        unique=True,
-        null=True,
-        blank=True,
-    )
     name = models.CharField(verbose_name=_("Full Name"), max_length=500, null=True, blank=True)
+    melli_code = models.CharField(verbose_name=_("National Id"), max_length=10, null=True, blank=True)
+    city = models.CharField(verbose_name=_("City of Residence"), max_length=500, null=True, blank=True)
+    gender = models.CharField(verbose_name=_("Gender"), null=True, blank=True)
+    fully_verified = models.BooleanField(verbose_name=_("ٰFully Verification Status"), default=False)
     profile_image = models.ImageField(
         verbose_name=_("Profile Photo"), upload_to="user_images", null=True, blank=True
     )
